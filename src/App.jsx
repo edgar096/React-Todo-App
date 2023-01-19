@@ -68,14 +68,13 @@ function App() {
   return (
     <>
       <h1>My List of Todos...</h1>
-      <input value={task} onChange={handleNewTodo} />
-      {/* <form onSubmit={handleNewTodo}>
+      <form onSubmit={handleNewTodo}>
         <label>
           Task:
-          <input type="text" onSubmit={} />
+          <input type="text" onChange={handleNewTodoTask} />
         </label>
         <input type="submit" value="Add" />
-      </form> */}
+      </form>
       <TodoList data={todoList} />
     </>
   );
