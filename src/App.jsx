@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import { TodoList } from 'TodoItem';
-import { TodoForm } from 'TodoForm';
 
 function TodoItem({ item }) {
   const [status, setStatus] = useState(item.completed);
@@ -22,7 +20,7 @@ function TodoItem({ item }) {
   );
 }
 
-function TodoList({ data }) {
+function TodoItems({ data }) {
   return data.map((item) => <TodoItem item={item} key={item.id} />);
 }
 
@@ -88,7 +86,7 @@ function App() {
     <>
       <h1>My List of Todos...</h1>
       <TodoForm handleAddTodo={handleAddTodo} />
-      <TodoList data={todoList} />
+      <TodoItems data={todoList} />
     </>
   );
 }
