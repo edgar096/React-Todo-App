@@ -1,51 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-
-function TodoItem({ item }) {
-  const [status, setStatus] = useState(item.completed);
-  function handleItemStatus(e) {
-    e.preventDefault();
-    setStatus(!item.completed);
-  }
-  return (
-    <div className="todo-item">
-      <span className="todo-task">{item.task}</span>
-      <input
-        className="todo-status"
-        type="checkbox"
-        checked={item.completed}
-        onChange={handleItemStatus}
-      />
-    </div>
-  );
-}
-
-function TodoItems({ data }) {
-  return data.map((item) => <TodoItem item={item} key={item.id} />);
-}
-
-function TodoForm({ handleAddTodo }) {
-  const [task, setTask] = useState('');
-
-  function handleNewTodo(e) {
-    e.preventDefault();
-    handleAddTodo(e.target.formreact.value);
-  }
-  function handleNewTodoTask(e) {
-    setTask(e.target.value);
-  }
-
-  return (
-    <form onSubmit={handleNewTodo}>
-      <label>
-        Task:
-        <input type="text" onChange={handleNewTodoTask} name="formreact" />
-      </label>
-      <input type="submit" value="Add" />
-    </form>
-  );
-}
-
+import TodoForm from './TodoInput/TodoForm';
+import TodoItems from './TodoList/TodoItems';
+import TodoFilter from './TodoInput/TodoFilter';
 function App() {
   let todos = [
     {
@@ -82,9 +39,11 @@ function App() {
       { id: Math.random(), task: task, completed: false },
     ]);
   }
+
   return (
     <>
       <h1>My List of Todos...</h1>
+      {/* <TodoFilter /> */}
       <TodoForm handleAddTodo={handleAddTodo} />
       <TodoItems data={todoList} />
     </>
