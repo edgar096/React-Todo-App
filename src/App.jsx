@@ -32,6 +32,7 @@ function App() {
   ];
 
   const [todoList, setTodoList] = useState(todos);
+  const [todoFilteredData, setTodoFilteredData] = useState(todos);
 
   function handleAddTodo(task) {
     setTodoList((prev) => [
@@ -40,12 +41,19 @@ function App() {
     ]);
   }
 
+  function handleTodoFilter(filter) {
+    setTodoFilteredData(
+      todoList.filter((item) => item.task.toLowerCase().includes(filter))
+    );
+    console.log(todoFilteredData);
+  }
+
   return (
     <>
       <h1>My List of Todos...</h1>
-      {/* <TodoFilter /> */}
-      <TodoForm handleAddTodo={handleAddTodo} />
-      <TodoItems data={todoList} />
+      <TodoFilter handleTodoFilter={handleTodoFilter} />
+      <TodoForm handleAddTodo={handleTodoFilter} />
+      <TodoItems data={todoFilteredData} />
     </>
   );
 }
