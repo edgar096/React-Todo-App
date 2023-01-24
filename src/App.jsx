@@ -45,14 +45,13 @@ function App() {
     setTodoFilteredData(
       todoList.filter((item) => item.task.toLowerCase().includes(filter))
     );
-    console.log(todoFilteredData);
   }
 
   return (
     <>
       <h1>My List of Todos...</h1>
       <TodoFilter handleTodoFilter={handleTodoFilter} />
-      <TodoForm handleAddTodo={handleTodoFilter} />
+      <TodoForm handleAddTodo={handleAddTodo} />
       <TodoItems data={todoFilteredData} />
     </>
   );
