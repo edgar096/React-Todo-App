@@ -35,10 +35,9 @@ function App() {
   const [todoFilteredData, setTodoFilteredData] = useState(todos);
 
   function handleAddTodo(task) {
-    setTodoList((prev) => [
-      ...prev,
-      { id: Math.random(), task: task, completed: false },
-    ]);
+    const newElement = { id: Math.random(), task: task, completed: false };
+    setTodoList((prev) => [...prev, newElement]);
+    setTodoFilteredData((prev) => [...prev, newElement]);
   }
 
   function handleTodoFilter(filter) {
