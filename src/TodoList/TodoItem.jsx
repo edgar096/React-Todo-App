@@ -4,6 +4,7 @@ function TodoItem({ item }) {
   function handleItemStatus() {
     setStatus(!item.completed);
   }
+
   return (
     <div className="todo-item">
       <span className="todo-task">{item.task}</span>
