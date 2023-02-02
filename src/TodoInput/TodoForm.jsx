@@ -4,9 +4,9 @@ function TodoForm({ handleAddTodo }) {
 
   function handleNewTodo(e) {
     e.preventDefault();
-    handleAddTodo(e.target.reactform.value);
-    e.target.reactform.value = '';
+    e.target.reactform.value != '' && handleAddTodo(e.target.reactform.value);
   }
+
   function handleNewTodoTask(e) {
     setTask(e.target.value);
   }

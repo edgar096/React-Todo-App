@@ -11,5 +11,3 @@ function TodoItems({ data }) {
 }
 
 export default TodoItems;
-
-//Filtrar informação por state em vez de guardar o filtro por state

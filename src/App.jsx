@@ -3,6 +3,11 @@ import './App.css';
 import TodoForm from './TodoInput/TodoForm';
 import TodoItems from './TodoList/TodoItems';
 import TodoFilter from './TodoInput/TodoFilter';
+import TodoSort from './TodoInput/TodoSort';
+
+//Human time (Added x minutes ago...)
+//Sort Todos
+//Add todos to localstorage
 function App() {
   let todos = [
     {
@@ -33,11 +38,13 @@ function App() {
 
   const [todoList, setTodoList] = useState(todos);
   const [todoFilteredData, setTodoFilteredData] = useState(todos);
+  const [todoSortedData, setTodoSortedData] = useState(todos);
 
   function handleAddTodo(task) {
     const newElement = { id: Math.random(), task: task, completed: false };
     setTodoList((prev) => [...prev, newElement]);
     setTodoFilteredData((prev) => [...prev, newElement]);
+    //setTodoSortedData((prev) => [...prev, newElement]);
   }
 
   function handleTodoFilter(filter) {
@@ -46,11 +53,17 @@ function App() {
     );
   }
 
+  function handleTodoSort() {
+    setTodoSortedData(todoList.sort((a, b) => a.task - b.task));
+    console.log(todoList);
+  }
+
   return (
     <>
       <h1>My List of Todos...</h1>
       <TodoFilter handleTodoFilter={handleTodoFilter} />
       <TodoForm handleAddTodo={handleAddTodo} />
+      <TodoSort handleTodoSort={handleTodoSort} />
       <TodoItems data={todoFilteredData} />
     </>
   );
