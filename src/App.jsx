@@ -54,8 +54,8 @@ function App() {
   }
 
   function handleTodoSort() {
-    setTodoSortedData(todoList.sort((a, b) => a.task - b.task));
-    console.log(todoList);
+    setTodoSortedData(todoFilteredData.sort((a, b) => a.task - b.task));
+    console.log(todoFilteredData);
   }
 
   return (
