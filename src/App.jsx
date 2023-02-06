@@ -38,13 +38,17 @@ function App() {
 
   const [todoList, setTodoList] = useState(todos);
   const [todoFilteredData, setTodoFilteredData] = useState(todos);
-  const [todoSortedData, setTodoSortedData] = useState(todos);
+  const [sortedData, setsortedData] = useState(todos);
 
   function handleAddTodo(task) {
-    const newElement = { id: Math.random(), task: task, completed: false };
+    const newElement = {
+      id: crypto.randomUUID(),
+      task: task,
+      completed: false,
+    };
     setTodoList((prev) => [...prev, newElement]);
     setTodoFilteredData((prev) => [...prev, newElement]);
-    //setTodoSortedData((prev) => [...prev, newElement]);
+    setsortedData((prev) => [...prev, newElement]);
   }
 
   function handleTodoFilter(filter) {
@@ -54,8 +58,11 @@ function App() {
   }
 
   function handleTodoSort() {
-    setTodoSortedData(todoFilteredData.sort((a, b) => a.task - b.task));
-    console.log(todoFilteredData);
+    setsortedData(
+      todoList.sort((a, b) =>
+        a.task.toLowerCase() > b.task.toLowerCase() ? 1 : -1
+      )
+    );
   }
 
   return (
@@ -64,7 +71,7 @@ function App() {
       <TodoFilter handleTodoFilter={handleTodoFilter} />
       <TodoForm handleAddTodo={handleAddTodo} />
       <TodoSort handleTodoSort={handleTodoSort} />
-      <TodoItems data={todoFilteredData} />
+      <TodoItems data={sortedData} />
     </>
   );
 }
