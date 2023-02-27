@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import TodoForm from './TodoInput/TodoForm';
 import TodoItems from './TodoList/TodoItems';
@@ -9,37 +9,17 @@ import TodoSort from './TodoInput/TodoSort';
 //Sort Todos
 //Add todos to localstorage
 function App() {
-  let todos = [
-    {
-      id: 43243232,
-      creationdate: '20220114',
-      task: 'Do the dishes',
-      completed: true,
-    },
-    {
-      id: 43243231,
-      creationdate: '20220114',
-      task: 'Do the laundry',
-      completed: true,
-    },
-    {
-      id: 43243233,
-      creationdate: '20220113',
-      task: 'Clean the PC',
-      completed: true,
-    },
-    {
-      id: 43243238,
-      creationdate: '20220112',
-      task: 'Pull the plug',
-      completed: false,
-    },
-  ];
-
+  let todos = JSON.parse(localStorage.getItem('todos')) || [];
   const [todoList, setTodoList] = useState(todos);
   const [todoFilteredData, setTodoFilteredData] = useState(todos);
   const [sortedData, setsortedData] = useState(todos);
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todoList));
+    return () => {
+      localStorage.removeItem('todos');
+    };
+  }, [todos]);
   function handleAddTodo(task) {
     const newElement = {
       id: crypto.randomUUID(),
