@@ -5,9 +5,6 @@ import TodoItems from './TodoList/TodoItems';
 import TodoFilter from './TodoInput/TodoFilter';
 import TodoSort from './TodoInput/TodoSort';
 
-//Human time (Added x minutes ago...)
-//Sort Todos
-//Add todos to localstorage
 function App() {
   let todos = JSON.parse(localStorage.getItem('todos')) || [];
   const [todoList, setTodoList] = useState(todos);
